@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CLUB YUINCHU — Beach Clean Community Project｜社内共有資料</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+  :root{
+    --bg: #F4ECDB;
+    --bg-2: #EFE4CC;
+    --ink: #15233F;
+    --ink-2: #2A3A5A;
+    --red: #D43B3B;
+    --red-deep: #B22B2B;
+    --blue: #2C6FB8;
+    --line: #15233F;
+    --muted: #6E6651;
+    --max: 1120px;
+    --pad: clamp(20px, 4vw, 56px);
+    --jp: "Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans","Meiryo",sans-serif;
+    --en: "Inter","Noto Sans JP",sans-serif;
+    --display: "Archivo Black","Inter","Noto Sans JP",sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--jp);line-height:1.8;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* ======== Layout ======== */
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  section{padding:clamp(64px,9vw,120px) 0;position:relative}
+  section + section{border-top:1px solid rgba(21,35,63,.12)}
+
+  .eyebrow{
+    font-family:var(--en);font-weight:700;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--red);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:28px;height:2px;background:var(--red)}
+
+  h2.section-title{
+    font-family:var(--display);font-weight:900;letter-spacing:-.01em;
+    font-size:clamp(32px,5vw,56px);line-height:1.05;margin:14px 0 28px;
+    color:var(--ink);
+  }
+  h2.section-title .ja{
+    display:block;font-family:var(--jp);font-size:.42em;font-weight:700;
+    letter-spacing:.04em;color:var(--ink-2);margin-top:10px;
+  }
+
+  /* ======== Top bar ======== */
+  .topbar{
+    position:sticky;top:0;z-index:40;background:rgba(244,236,219,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(21,35,63,.12);
+  }
+  .topbar-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);letter-spacing:.06em;font-size:14px}
+  .brand .dot{width:10px;height:10px;background:var(--red);border-radius:50%}
+  .doctag{
+    font-family:var(--en);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted)
+  }
+
+  /* ======== HERO ======== */
+  .hero{
+    padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,80px);
+    position:relative;overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
+  @media (max-width:880px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+
+  .hero-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1.5px solid var(--ink);border-radius:999px;
+    padding:6px 14px;font-family:var(--en);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    background:var(--bg);
+  }
+  .badge.red{background:var(--red);color:#fff;border-color:var(--red)}
+  .badge .glyph{width:8px;height:8px;border-radius:50%;background:var(--ink)}
+  .badge.red .glyph{background:#fff}
+
+  .hero h1{
+    font-family:var(--display);font-weight:900;
+    font-size:clamp(48px,9.2vw,124px);line-height:.92;letter-spacing:-.02em;
+    color:var(--ink);
+  }
+  .hero h1 .accent{color:var(--red)}
+  .hero .sub{
+    font-family:var(--display);font-size:clamp(18px,2.4vw,28px);
+    letter-spacing:.04em;margin-top:14px;
+  }
+  .hero .ja-sub{
+    font-size:clamp(13px,1.4vw,15px);color:var(--ink-2);
+    margin-top:18px;max-width:34ch;
+  }
+
+  .hero-tags{
+    display:flex;gap:8px;flex-wrap:wrap;margin-top:28px;
+  }
+  .hero-tags span{
+    font-family:var(--en);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-2);border:1px solid rgba(21,35,63,.25);padding:5px 10px;border-radius:4px;
+  }
+
+  /* Hero side: target box */
+  .target-card{
+    border:1.5px solid var(--ink);background:var(--bg-2);
+    padding:22px 22px 18px;border-radius:6px;position:relative;
+  }
+  .target-card::before{
+    content:"";position:absolute;inset:6px;border:1px dashed rgba(21,35,63,.35);border-radius:3px;pointer-events:none;
+  }
+  .target-card h3{
+    font-family:var(--en);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:10px;
+  }
+  .target-card p{font-size:14px;line-height:1.85}
+  .target-card .meta{
+    display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin-top:14px;
+    font-size:12px;color:var(--ink-2);
+  }
+  .target-card .meta dt{font-family:var(--en);letter-spacing:.18em;text-transform:uppercase;font-size:10px;color:var(--red)}
+  .target-card .meta dd{font-weight:500;color:var(--ink)}
+
+  /* Tagline strip */
+  .taglines{
+    margin-top:clamp(40px,6vw,72px);
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    padding:clamp(22px,3vw,32px) 0;
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    background:var(--bg-2);
+  }
+  @media (max-width:720px){.taglines{grid-template-columns:1fr}}
+  .taglines .t{
+    padding:0 clamp(20px,3vw,40px);
+    font-family:var(--display);font-size:clamp(18px,2.4vw,26px);
+    line-height:1.45;color:var(--ink);position:relative;
+  }
+  .taglines .t + .t{border-left:1px solid rgba(21,35,63,.25)}
+  @media (max-width:720px){.taglines .t + .t{border-left:0;border-top:1px solid rgba(21,35,63,.25);padding-top:24px}}
+  .taglines .t::before{
+    content:"〝";color:var(--red);font-size:1.6em;line-height:.6;margin-right:4px;
+  }
+
+  /* ======== Concept body ======== */
+  .concept-body{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;
+  }
+  @media (max-width:880px){.concept-body{grid-template-columns:1fr;gap:28px}}
+  .concept-body p{font-size:15px;line-height:2;color:var(--ink-2)}
+  .concept-body .em{color:var(--ink);font-weight:700}
+
+  .cycle{
+    margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  }
+  @media (max-width:880px){.cycle{grid-template-columns:repeat(2,1fr)}}
+  .cycle li{
+    list-style:none;border:1.5px solid var(--ink);background:var(--bg);
+    padding:22px 18px;border-radius:6px;position:relative;
+    display:flex;flex-direction:column;gap:10px;min-height:140px;
+  }
+  .cycle li .num{
+    font-family:var(--en);font-size:11px;letter-spacing:.2em;color:var(--red);
+  }
+  .cycle li p{font-size:14px;line-height:1.7;font-weight:500}
+  .cycle li::after{
+    content:"→";position:absolute;right:-14px;top:50%;transform:translateY(-50%);
+    color:var(--red);font-weight:900;font-size:18px;
+  }
+  .cycle li:last-child::after{content:"↺"}
+  @media (max-width:880px){
+    .cycle li::after{display:none}
+  }
+
+  /* ======== MV block ======== */
+  .mv{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border:1.5px solid var(--ink);background:var(--bg);
+  }
+  @media (max-width:880px){.mv{grid-template-columns:1fr}}
+  .mv > div{padding:clamp(28px,4vw,44px)}
+  .mv > div + div{border-left:1px solid var(--ink)}
+  @media (max-width:880px){.mv > div + div{border-left:0;border-top:1px solid var(--ink)}}
+
+  .mv-label{
+    font-family:var(--display);font-size:14px;letter-spacing:.2em;color:var(--red);margin-bottom:14px;
+  }
+  .mv-headline{
+    font-family:var(--jp);font-weight:900;font-size:clamp(22px,2.8vw,30px);
+    line-height:1.45;color:var(--ink);margin-bottom:18px;
+  }
+  .mv-body{font-size:14px;line-height:2;color:var(--ink-2)}
+  .mv-body .strong{color:var(--ink);font-weight:700}
+
+  /* ======== VALUE ======== */
+  .values{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:14px;
+  }
+  @media (max-width:1000px){.values{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.values{grid-template-columns:1fr}}
+  .value{
+    border:1.5px solid var(--ink);background:var(--bg);padding:22px 20px;
+    border-radius:6px;display:flex;flex-direction:column;gap:10px;min-height:200px;
+    position:relative;overflow:hidden;
+  }
+  .value .no{
+    font-family:var(--display);font-size:42px;line-height:1;color:var(--red);
+  }
+  .value h4{
+    font-family:var(--display);font-size:14px;letter-spacing:.06em;color:var(--ink);
+  }
+  .value p{font-size:13px;line-height:1.85;color:var(--ink-2);margin-top:auto}
+  .value::after{
+    content:"";position:absolute;right:-20px;bottom:-20px;width:60px;height:60px;
+    border:1.5px solid var(--ink);border-radius:50%;
+  }
+
+  /* ======== Goals timeline ======== */
+  .goals{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  }
+  @media (max-width:880px){.goals{grid-template-columns:1fr}}
+  .goal{
+    border:1.5px solid var(--ink);background:var(--bg);padding:26px 22px;border-radius:6px;
+    position:relative;
+  }
+  .goal .term{
+    display:inline-block;font-family:var(--en);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    background:var(--ink);color:var(--bg);padding:4px 10px;border-radius:999px;margin-bottom:14px;
+  }
+  .goal h4{
+    font-family:var(--jp);font-weight:900;font-size:18px;margin-bottom:14px;color:var(--ink);
+  }
+  .goal ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .goal ul li{
+    font-size:13.5px;line-height:1.75;padding-left:18px;position:relative;color:var(--ink-2);
+  }
+  .goal ul li::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:var(--red);
+    position:absolute;left:4px;top:.65em;
+  }
+  .goal.long{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .goal.long .term{background:var(--red);color:#fff}
+  .goal.long h4{color:#fff}
+  .goal.long ul li{color:rgba(244,236,219,.85)}
+  .goal.long ul li::before{background:#fff}
+  .goal.long .quote{
+    margin-top:16px;padding-top:16px;border-top:1px solid rgba(244,236,219,.25);
+    font-family:var(--display);font-size:15px;line-height:1.55;color:#fff;
+  }
+
+  /* ======== 理念 ======== */
+  .philosophy{
+    background:var(--ink);color:var(--bg);border-radius:8px;
+    padding:clamp(40px,6vw,72px);position:relative;overflow:hidden;
+  }
+  .philosophy::before{
+    content:"";position:absolute;inset:14px;border:1px dashed rgba(244,236,219,.25);border-radius:4px;pointer-events:none;
+  }
+  .philosophy .eyebrow{color:#FF7A7A}
+  .philosophy .eyebrow::before{background:#FF7A7A}
+  .philosophy h2{
+    font-family:var(--jp);font-weight:900;font-size:clamp(24px,3.4vw,38px);line-height:1.45;
+    margin:14px 0 22px;color:#fff;
+  }
+  .philosophy p{font-size:15px;line-height:2.05;color:rgba(244,236,219,.88);max-width:62ch}
+  .philosophy .seal{
+    position:absolute;right:clamp(20px,4vw,48px);top:clamp(20px,4vw,48px);
+    width:96px;height:96px;border:2px solid rgba(244,236,219,.5);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:var(--display);font-size:11px;letter-spacing:.18em;color:rgba(244,236,219,.7);line-height:1.3;
+  }
+  @media (max-width:600px){.philosophy .seal{display:none}}
+
+  /* ======== Characters ======== */
+  .characters{
+    background:#fff;border:1.5px solid var(--ink);border-radius:8px;padding:18px;
+  }
+  .characters figure img{width:100%;border-radius:4px}
+  .characters figcaption{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:14px;padding:0 6px;
+    font-family:var(--en);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  }
+  .characters figcaption b{color:var(--red);font-weight:700}
+
+  /* ======== Messages ======== */
+  .msgs{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:880px){.msgs{grid-template-columns:1fr}}
+  .msg{
+    border:1.5px solid var(--ink);border-radius:8px;padding:clamp(28px,4vw,40px);
+    background:var(--bg);position:relative;
+  }
+  .msg.sponsor{background:var(--bg-2)}
+  .msg .role{
+    font-family:var(--en);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);
+  }
+  .msg h3{
+    font-family:var(--jp);font-weight:900;font-size:clamp(20px,2.4vw,26px);line-height:1.45;
+    margin:10px 0 18px;color:var(--ink);
+  }
+  .msg p{font-size:14px;line-height:2;color:var(--ink-2)}
+  .msg .em{color:var(--ink);font-weight:700}
+  .msg ul{list-style:none;margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .msg ul li{
+    font-size:12.5px;padding-left:16px;position:relative;color:var(--ink-2);line-height:1.7;
+  }
+  .msg ul li::before{
+    content:"+";position:absolute;left:0;top:0;color:var(--red);font-weight:900;
+  }
+
+  /* ======== Footer ======== */
+  footer{
+    padding:48px 0 56px;border-top:1px solid rgba(21,35,63,.2);margin-top:24px;
+  }
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+  .foot-brand{font-family:var(--display);font-size:24px;letter-spacing:.04em}
+  .foot-meta{
+    font-family:var(--en);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    text-align:right;line-height:1.8;
+  }
+
+  /* ======== Decorative dots ======== */
+  .dots{
+    position:absolute;width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle, var(--red) 1.5px, transparent 2px) 0 0/12px 12px;
+    opacity:.55;pointer-events:none;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand"><span class="dot"></span> CLUB YUINCHU</div>
+    <div class="doctag">Internal Brief / 2026.05.07</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-meta">
+          <span class="badge red"><span class="glyph"></span>Beach Clean Community</span>
+          <span class="badge"><span class="glyph"></span>Miyakojima, Okinawa</span>
+          <span class="badge"><span class="glyph"></span>Internal Sharing Doc</span>
+        </div>
+        <h1>CLUB<br>YUIN<span class="accent">CHU</span>.</h1>
+        <div class="sub">Beach Clean Community Project</div>
+        <p class="ja-sub">宮古島の海と人をつなぐ、新しい旅の文化を育てるコミュニティ。<br>本資料はプロジェクト全体像を社内で共有するためのものです。</p>
+
+        <div class="hero-tags">
+          <span>#Community</span>
+          <span>#Sustainable</span>
+          <span>#Travel</span>
+          <span>#Local Love</span>
+          <span>#Action First</span>
+        </div>
+      </div>
+
+      <aside class="target-card">
+        <h3>What is this doc?</h3>
+        <p>CLUB YUINCHU の<strong>ブランドコンセプト・ミッション・ゴール</strong>を社内で共有するための内部資料。スポンサー企画・SNS設計・現場運営の<strong>共通言語</strong>として使う。</p>
+        <dl class="meta">
+          <dt>Project</dt><dd>Beach Clean Community</dd>
+          <dt>Owner</dt><dd>CLUB YUINCHU</dd>
+          <dt>Issued</dt><dd>2026.05.07 / v1.0</dd>
+          <dt>Audience</dt><dd>社内・連携パートナー</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="taglines">
+      <div class="t">旅の途中で、島とつながる。</div>
+      <div class="t">海を守ることは、島を好きになること。</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">01 / Concept</span>
+    <h2 class="section-title">CONCEPT<span class="ja">ブランドコンセプト</span></h2>
+
+    <div class="concept-body">
+      <p>
+        CLUB YUINCHU は、<span class="em">ただごみを拾う場所じゃない。</span><br>
+        宮古島の海、自然、人、文化を好きな人たちが集まり、未来へつながる新しいコミュニティをつくっている。
+      </p>
+      <p>
+        ここは、<span class="em">"旅の途中で参加できるコミュニティ"</span>。<br>
+        観光地を巡るだけじゃ出会えない、宮古島の空気、人、文化、想いに触れる場所。<br>
+        ビーチクリーンをきっかけに、人と人がつながり、島への愛着が生まれる。
+      </p>
+    </div>
+
+    <ul class="cycle" aria-label="ビーチクリーンが生む循環">
+      <li><span class="num">01 / Connect</span><p>人と人がつながる</p></li>
+      <li><span class="num">02 / Attach</span><p>島への愛着が生まれる</p></li>
+      <li><span class="num">03 / Local</span><p>地域との距離が近くなる</p></li>
+      <li><span class="num">04 / Love</span><p>宮古島をもっと好きになる</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- MISSION / VISION -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">02 / Mission &amp; Vision</span>
+    <h2 class="section-title">MISSION × VISION<span class="ja">使命と、目指す未来</span></h2>
+
+    <div class="mv">
+      <div>
+        <div class="mv-label">MISSION</div>
+        <div class="mv-headline">宮古島を、<br>誇れる島へ。</div>
+        <p class="mv-body">
+          ビーチクリーンを通して、宮古島の自然とコミュニティ文化を未来へつなぐ。<br>
+          そして、<span class="strong">"旅人も、島の一員になれる場所"</span>をつくっていく。
+        </p>
+      </div>
+      <div>
+        <div class="mv-label">VISION</div>
+        <div class="mv-headline">世界で一番、<br>人と海が近いコミュニティへ。</div>
+        <p class="mv-body">
+          ただの観光地じゃなく、人が想いを持って関わる<span class="strong">"コミュニティアイランド"</span>へ。<br>
+          「宮古島に来たら、自然と誰かとつながれる。」そんな新しい旅の文化を育てていく。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">03 / Value</span>
+    <h2 class="section-title">FIVE VALUES<span class="ja">私たちが大切にする5つの価値観</span></h2>
+
+    <div class="values">
+      <div class="value">
+        <span class="no">01</span>
+        <h4>CLEAN with FUN</h4>
+        <p>"義務"じゃなく、"楽しい"から始める。</p>
+      </div>
+      <div class="value">
+        <span class="no">02</span>
+        <h4>OPEN COMMUNITY</h4>
+        <p>島民も、旅人も、誰でもWELCOME。</p>
+      </div>
+      <div class="value">
+        <span class="no">03</span>
+        <h4>LOVE LOCAL</h4>
+        <p>宮古島の自然・文化・人を大切にする。</p>
+      </div>
+      <div class="value">
+        <span class="no">04</span>
+        <h4>ACTION FIRST</h4>
+        <p>小さくても、まず動く。</p>
+      </div>
+      <div class="value">
+        <span class="no">05</span>
+        <h4>TOGETHER</h4>
+        <p>一人じゃなく、みんなでつくる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">04 / Project Goal</span>
+    <h2 class="section-title">ROADMAP<span class="ja">短期 → 中期 → 長期 の到達点</span></h2>
+
+    <div class="goals">
+      <div class="goal">
+        <span class="term">Short term</span>
+        <h4>足場をつくる</h4>
+        <ul>
+          <li>毎月定期的にビーチクリーンを開催</li>
+          <li>地域住民・観光客の参加促進</li>
+          <li>"旅の途中で参加できる"導線づくり</li>
+          <li>SNS発信強化</li>
+          <li>コミュニティ形成</li>
+        </ul>
+      </div>
+      <div class="goal">
+        <span class="term">Mid term</span>
+        <h4>地域と観光をつなぐ</h4>
+        <ul>
+          <li>宮古島を代表する地域活動へ成長</li>
+          <li>学生・企業・観光事業者との連携</li>
+          <li>サステナブルツーリズム化</li>
+          <li>会員コミュニティ形成</li>
+          <li>新しい観光文化として定着</li>
+        </ul>
+      </div>
+      <div class="goal long">
+        <span class="term">Long term</span>
+        <h4>文化として根づかせる</h4>
+        <ul>
+          <li>"特別な活動"ではなく日常の選択肢に</li>
+          <li>旅の思い出の一部として残る</li>
+          <li>島の文化と接続する観光体験へ</li>
+        </ul>
+        <p class="quote">"宮古島に来たら、<br>CLUB YUINCHUに参加する。"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section>
+  <div class="wrap">
+    <div class="philosophy">
+      <span class="eyebrow">05 / Philosophy</span>
+      <h2>人が集まる場所には、<br>愛着が生まれる。</h2>
+      <p>
+        海をきれいにすることだけが目的じゃない。<br>
+        人が集まり、笑い、語り合い、旅の途中で誰かと出会い、宮古島をもっと好きになる。<br>
+        その想いが、自然と島を守る行動につながっていく。<br><br>
+        CLUB YUINCHU は、そんな<strong>"想いの循環"</strong>をつくるコミュニティ。
+      </p>
+      <div class="seal">CLUB<br>YUINCHU<br>★ 2026 ★</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTERS -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">06 / Visual Identity</span>
+    <h2 class="section-title">CHARACTERS<span class="ja">ビジュアルアイデンティティ｜キャラクターラインアップ</span></h2>
+
+    <div class="characters">
+      <figure>
+        <img src="../docs/ChatGPT%20Image%202026年5月7日%2015_47_49.png" alt="CLUB YUINCHU キャラクターラインアップとポーズ・表情・小物バリエーション">
+        <figcaption>
+          <span><b>Character Lineup</b> &nbsp;/&nbsp; Poses &nbsp;/&nbsp; Expressions &nbsp;/&nbsp; Details</span>
+          <span>Asset v1 — 2026.05</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGES -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">07 / Messages</span>
+    <h2 class="section-title">MESSAGES<span class="ja">スポンサー企業／参加者へのメッセージ</span></h2>
+
+    <div class="msgs">
+      <div class="msg sponsor">
+        <span class="role">For Sponsors</span>
+        <h3>宮古島の未来を、<br>一緒につくる。</h3>
+        <p>
+          CLUB YUINCHU は、地域・観光・コミュニティをつなぐビーチクリーンプロジェクト。<br>
+          単なるCSR活動じゃない。<span class="em">"旅人と地域をつなぐ新しい観光文化"</span> を一緒につくる仲間を探している。
+        </p>
+        <ul>
+          <li>地域貢献</li>
+          <li>サステナブルなブランド価値</li>
+          <li>コミュニティ接点</li>
+          <li>観光価値向上</li>
+          <li>ESG・SDGs文脈</li>
+          <li>共創ストーリー</li>
+        </ul>
+      </div>
+
+      <div class="msg">
+        <span class="role">For Participants</span>
+        <h3>旅の途中で、<br>宮古島とつながる。</h3>
+        <p>
+          ビーチクリーンは、ただごみを拾う活動じゃない。<br>
+          海を眺めながら歩くこと。誰かと出会うこと。島の空気に触れること。宮古島をもっと好きになること。
+        </p>
+        <p style="margin-top:12px">
+          一人でも、旅行中でも、初参加でも大丈夫。<br>
+          <span class="em">「観光」じゃなく、「少しだけ宮古島に関わって帰る旅」へ。</span><br>
+          手ぶらで、気軽に参加してほしい。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-brand">CLUB YUINCHU<span style="color:var(--red)">.</span></div>
+      <div style="font-family:var(--en);font-size:12px;letter-spacing:.16em;color:var(--muted);margin-top:6px">
+        BEACH CLEAN COMMUNITY PROJECT — MIYAKOJIMA
+      </div>
+    </div>
+    <div class="foot-meta">
+      Internal Sharing Document<br>
+      v1.0 — 2026.05.07<br>
+      Issued by CLUB YUINCHU
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
