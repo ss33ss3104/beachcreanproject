@@ -330,6 +330,42 @@
     background:radial-gradient(circle, var(--red) 1.5px, transparent 2px) 0 0/12px 12px;
     opacity:.55;pointer-events:none;
   }
+
+  /* ======== Reference card (キャラクターシート参考画像) ======== */
+  .ref-card{
+    display:inline-block;background:#fff;border:1.5px solid var(--ink);
+    padding:10px 10px 6px;border-radius:3px;position:relative;
+    box-shadow:4px 6px 0 rgba(21,35,63,.16);
+    max-width:260px;
+  }
+  .ref-card img{
+    width:100%;display:block;border-radius:2px;
+  }
+  .ref-card .ref-label{
+    display:flex;justify-content:space-between;align-items:center;gap:8px;
+    margin-top:8px;padding:0 2px;
+    font-family:var(--en);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .ref-card .ref-label b{color:var(--red);font-weight:700;letter-spacing:.18em}
+  .ref-card::before{
+    content:"";position:absolute;top:-10px;left:22px;
+    width:54px;height:16px;background:rgba(212,59,59,.45);
+    border:1px solid rgba(212,59,59,.55);border-radius:2px;
+    transform:rotate(-3deg);
+  }
+  .ref-card.tape-r::before{left:auto;right:22px;transform:rotate(3deg)}
+  .ref-card.tilt-l{transform:rotate(-1.4deg)}
+  .ref-card.tilt-r{transform:rotate(1.4deg)}
+
+  .ref-row{
+    display:flex;justify-content:flex-end;margin-top:40px;
+  }
+  .ref-row.left{justify-content:flex-start}
+  @media (max-width:600px){
+    .ref-row,.ref-row.left{justify-content:center}
+    .ref-card{max-width:220px}
+  }
 </style>
 </head>
 <body>
@@ -364,15 +400,23 @@
         </div>
       </div>
 
-      <aside class="target-card">
-        <h3>What is this doc?</h3>
-        <p>CLUB YUINCHU の<strong>ブランドコンセプト・ミッション・ゴール</strong>を社内で共有するための内部資料。スポンサー企画・SNS設計・現場運営の<strong>共通言語</strong>として使う。</p>
-        <dl class="meta">
-          <dt>Project</dt><dd>Beach Clean Community</dd>
-          <dt>Owner</dt><dd>CLUB YUINCHU</dd>
-          <dt>Issued</dt><dd>2026.05.07 / v1.0</dd>
-          <dt>Audience</dt><dd>社内・連携パートナー</dd>
-        </dl>
+      <aside>
+        <div class="target-card">
+          <h3>What is this doc?</h3>
+          <p>CLUB YUINCHU の<strong>ブランドコンセプト・ミッション・ゴール</strong>を社内で共有するための内部資料。スポンサー企画・SNS設計・現場運営の<strong>共通言語</strong>として使う。</p>
+          <dl class="meta">
+            <dt>Project</dt><dd>Beach Clean Community</dd>
+            <dt>Owner</dt><dd>CLUB YUINCHU</dd>
+            <dt>Issued</dt><dd>2026.05.07 / v1.0</dd>
+            <dt>Audience</dt><dd>社内・連携パートナー</dd>
+          </dl>
+        </div>
+        <div class="ref-row" style="margin-top:28px">
+          <div class="ref-card tilt-r tape-r">
+            <img src="../docs/ChatGPT%20Image%202026年5月7日%2015_47_49.png" alt="CLUB YUINCHU キャラクターシート（参考画像）">
+            <div class="ref-label"><span><b>Reference</b> &nbsp;Character Sheet</span><span>v1 / 2026.05</span></div>
+          </div>
+        </div>
       </aside>
     </div>
 
@@ -587,6 +631,13 @@
           <span class="em">「観光」じゃなく、「少しだけ宮古島に関わって帰る旅」へ。</span><br>
           手ぶらで、気軽に参加してほしい。
         </p>
+      </div>
+    </div>
+
+    <div class="ref-row left">
+      <div class="ref-card tilt-l">
+        <img src="../docs/ChatGPT%20Image%202026年5月7日%2015_47_49.png" alt="CLUB YUINCHU キャラクターシート（参考画像）">
+        <div class="ref-label"><span><b>Reference</b> &nbsp;Sponsors &amp; Participants</span><span>Sheet v1</span></div>
       </div>
     </div>
   </div>
