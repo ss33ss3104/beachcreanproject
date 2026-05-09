@@ -131,17 +131,17 @@
     margin-top:clamp(40px,6vw,72px);
     border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
     padding:clamp(22px,3vw,32px) 0;
-    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
     background:var(--bg-2);
   }
-  @media (max-width:720px){.taglines{grid-template-columns:1fr}}
+  @media (max-width:880px){.taglines{grid-template-columns:1fr}}
   .taglines .t{
-    padding:0 clamp(20px,3vw,40px);
-    font-family:var(--display);font-size:clamp(18px,2.4vw,26px);
-    line-height:1.45;color:var(--ink);position:relative;
+    padding:0 clamp(20px,2.4vw,32px);
+    font-family:var(--display);font-size:clamp(16px,2vw,22px);
+    line-height:1.5;color:var(--ink);position:relative;
   }
   .taglines .t + .t{border-left:1px solid rgba(21,35,63,.25)}
-  @media (max-width:720px){.taglines .t + .t{border-left:0;border-top:1px solid rgba(21,35,63,.25);padding-top:24px}}
+  @media (max-width:880px){.taglines .t + .t{border-left:0;border-top:1px solid rgba(21,35,63,.25);padding-top:24px}}
   .taglines .t::before{
     content:"〝";color:var(--red);font-size:1.6em;line-height:.6;margin-right:4px;
   }
@@ -331,6 +331,14 @@
     opacity:.55;pointer-events:none;
   }
 
+  /* ======== Character spots (controlled accents) ======== */
+  .hero-char{
+    width:clamp(110px,16vw,150px);height:auto;display:block;
+    margin:0 0 18px auto;mix-blend-mode:multiply;
+  }
+  @media (max-width:880px){.hero-char{margin:0 0 14px 0}}
+
+
   /* ======== Sponsor price block ======== */
   .sponsor-price{
     margin-top:24px;border:1.5px solid var(--ink);background:var(--bg);
@@ -442,6 +450,7 @@
       </div>
 
       <aside>
+        <img class="hero-char" src="assets/characters/hero-01.png" alt="">
         <div class="target-card">
           <h3>What is this doc?</h3>
           <p>CLUB YUINCHU の<strong>ブランドコンセプト・ミッション・ゴール</strong>を社内で共有するための内部資料。スポンサー企画・SNS設計・現場運営の<strong>共通言語</strong>として使う。</p>
@@ -462,8 +471,9 @@
     </div>
 
     <div class="taglines">
+      <div class="t">旅の目的として、島とつながる。</div>
       <div class="t">旅の途中で、島とつながる。</div>
-      <div class="t">海を守ることは、島を好きになること。</div>
+      <div class="t">海を守ることは、しまをすきになること。</div>
     </div>
   </div>
 </section>
@@ -583,6 +593,7 @@
           <li>宮古島を代表する地域活動へ成長</li>
           <li>学生・企業・観光事業者との連携</li>
           <li>サステナブルツーリズム化</li>
+          <li>ウェルネスツーリズム化</li>
           <li>会員コミュニティ形成</li>
           <li>新しい観光文化として定着</li>
         </ul>
@@ -606,7 +617,7 @@
   <div class="wrap">
     <div class="philosophy">
       <span class="eyebrow">05 / Philosophy</span>
-      <h2>人が集まる場所には、<br>愛着が生まれる。</h2>
+      <h2>目的を持った人が集まる海には、<br>愛着が生まれる。</h2>
       <p>
         海をきれいにすることだけが目的じゃない。<br>
         人が集まり、笑い、語り合い、旅の途中で誰かと出会い、宮古島をもっと好きになる。<br>
